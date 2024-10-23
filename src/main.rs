@@ -1,8 +1,7 @@
 use dotenv::dotenv;
-use reqwest::Client;
 use std::env;
 
-use serenity::all::PartialCurrentApplicationInfo;
+use serenity::builder::{ CreateMessage, CreateEmbed };
 use serenity::async_trait;
 use serenity::model::channel::Message;
 use serenity::model::gateway::Ready;
@@ -24,6 +23,25 @@ impl EventHandler for Handler {
 
             if let Err(why) = msg.channel_id.say(&ctx.http, quote).await {
                 println!("Error sending message: {:?}", why)
+            }
+        }
+
+        // Respond with an inspirational image
+        if msg.content == "!image" {
+            let image_url = fetch_image_url()
+                .await
+                .unwrap_or("Sorry, couldn't fetch an image.".to_string());
+
+            let embed = CreateEmbed::new().image(&image_url);
+            let builder = CreateMessage::new().embed(embed);
+
+
+            if let Err(why) = msg
+                .channel_id
+                .send_message(&ctx.http, builder)
+                .await
+            {
+                println!("Error sending image: {:?}", why);
             }
         }
     }
@@ -52,6 +70,15 @@ async fn fetch_quote() -> Result<String, reqwest::Error> {
     let author = res[0]["a"].as_str().unwrap_or("Unknown");
 
     Ok(format!("\"{}\" - {}", content, author))
+}
+
+// Function to fetch the random inspirational image URL
+async fn fetch_image_url() -> Result<String, reqwest::Error> {
+    let client = reqwest::Client::new();
+    let res = client.get("https://zenquotes.io/api/image").send().await?;
+
+    // Get the final URL from the response
+    Ok(res.url().to_string())
 }
 
 #[tokio::main]
