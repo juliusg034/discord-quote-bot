@@ -1,6 +1,8 @@
-use std::env;
 use dotenv::dotenv;
+use reqwest::Client;
+use std::env;
 
+use serenity::all::PartialCurrentApplicationInfo;
 use serenity::async_trait;
 use serenity::model::channel::Message;
 use serenity::model::gateway::Ready;
@@ -15,12 +17,13 @@ impl EventHandler for Handler {
     // Event handlers are dispatched through a threadpool, and so multiple events can be
     // dispatched simultaneously.
     async fn message(&self, ctx: Context, msg: Message) {
-        if msg.content == "!ping" {
-            // Sending a message can fail, due to a network error, an authentication error, or lack
-            // of permissions to post in the channel, so log to stdout when some error happens,
-            // with a description of it.
-            if let Err(why) = msg.channel_id.say(&ctx.http, "Pong!").await {
-                println!("Error sending message: {why:?}");
+        if msg.content == "!quote" {
+            let quote = fetch_quote()
+                .await
+                .unwrap_or("Sorry couldn't fecth a quote".to_string());
+
+            if let Err(why) = msg.channel_id.say(&ctx.http, quote).await {
+                println!("Error sending message: {:?}", why)
             }
         }
     }
@@ -35,6 +38,22 @@ impl EventHandler for Handler {
     }
 }
 
+async fn fetch_quote() -> Result<String, reqwest::Error> {
+    let client = reqwest::Client::new();
+    let res = client
+        .get("https://zenquotes.io/api/random") // Example API for random quotes
+        .send()
+        .await?
+        .json::<serde_json::Value>()
+        .await?;
+
+    // Access the first element of the array and then the "q" and "a" fields
+    let content = res[0]["q"].as_str().unwrap_or("No quote available");
+    let author = res[0]["a"].as_str().unwrap_or("Unknown");
+
+    Ok(format!("\"{}\" - {}", content, author))
+}
+
 #[tokio::main]
 async fn main() {
     dotenv().ok();
@@ -47,8 +66,10 @@ async fn main() {
 
     // Create a new instance of the Client, logging in as a bot. This will automatically prepend
     // your bot token with "Bot ", which is a requirement by Discord for bot users.
-    let mut client =
-        Client::builder(&token, intents).event_handler(Handler).await.expect("Err creating client");
+    let mut client = serenity::Client::builder(&token, intents)
+        .event_handler(Handler)
+        .await
+        .expect("Err creating client");
 
     // Finally, start a single shard, and start listening to events.
     //
