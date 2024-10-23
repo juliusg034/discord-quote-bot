@@ -1,0 +1,12 @@
+/home/caesar/code/rust/discord-bots/discord-quote-bot/target/debug/deps/libhttparse-5d6667d0079b527c.rmeta: /home/caesar/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.9.5/src/lib.rs /home/caesar/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.9.5/src/iter.rs /home/caesar/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.9.5/src/macros.rs /home/caesar/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.9.5/src/simd/mod.rs /home/caesar/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.9.5/src/simd/swar.rs /home/caesar/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.9.5/src/simd/sse42.rs /home/caesar/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.9.5/src/simd/avx2.rs /home/caesar/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.9.5/src/simd/runtime.rs
+
+/home/caesar/code/rust/discord-bots/discord-quote-bot/target/debug/deps/httparse-5d6667d0079b527c.d: /home/caesar/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.9.5/src/lib.rs /home/caesar/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.9.5/src/iter.rs /home/caesar/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.9.5/src/macros.rs /home/caesar/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.9.5/src/simd/mod.rs /home/caesar/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.9.5/src/simd/swar.rs /home/caesar/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.9.5/src/simd/sse42.rs /home/caesar/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.9.5/src/simd/avx2.rs /home/caesar/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.9.5/src/simd/runtime.rs
+
+/home/caesar/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.9.5/src/lib.rs:
+/home/caesar/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.9.5/src/iter.rs:
+/home/caesar/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.9.5/src/macros.rs:
+/home/caesar/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.9.5/src/simd/mod.rs:
+/home/caesar/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.9.5/src/simd/swar.rs:
+/home/caesar/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.9.5/src/simd/sse42.rs:
+/home/caesar/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.9.5/src/simd/avx2.rs:
+/home/caesar/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.9.5/src/simd/runtime.rs:
